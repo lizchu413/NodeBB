@@ -1756,6 +1756,14 @@ describe('Topic\'s', () => {
             });
         });
 
+        it('should return empty array if query is falsy (has cid)', (done) => {
+            socketTopics.autocompleteTags({ uid: adminUid }, { query: '', cid: topic.categoryId }, (err, data) => {
+                assert.ifError(err);
+                assert.deepEqual([], data);
+                done();
+            });
+        });
+
         it('should autocomplete tags', (done) => {
             socketTopics.autocompleteTags({ uid: adminUid }, { query: 'p' }, (err, data) => {
                 assert.ifError(err);
