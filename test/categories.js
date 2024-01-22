@@ -670,6 +670,14 @@ describe('Categories', () => {
             });
         });
 
+        it('should return true if tag can be removed', (done) => {
+            socketTopics.canRemoveTag({ uid: posterUid }, { tag: 'nodebb', cid: cid }, (err, allowed) => {
+                assert.ifError(err);
+                assert(allowed);
+                done();
+            });
+        });
+
         it('should return false if category whitelist does not have tag', (done) => {
             socketTopics.isTagAllowed({ uid: posterUid }, { tag: 'notallowed', cid: cid }, (err, allowed) => {
                 assert.ifError(err);
